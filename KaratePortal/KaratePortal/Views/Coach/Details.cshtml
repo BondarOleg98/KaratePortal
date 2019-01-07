@@ -1,0 +1,68 @@
+﻿@model KaratePortal.Models.PersonKarate.Coach
+@using KaratePortal.Models.PersonKarate
+@{
+    ViewBag.Title = "Details about coach";
+}
+<br />
+<br />
+<br />
+<h2>Details about coach</h2>
+
+<div class="display-label"><b>Name</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<div class="display-label"><b>Last name</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.LastName)
+</div>
+
+<div class="display-label"><b>Age</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Age)
+</div>
+<div class="display-label"><b>Country</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Country)
+</div>
+<div class="display-label"><b>City</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.City)
+</div>
+<div class="display-label"><b>Belt</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Belt)
+</div>
+<div class="display-label"><b>Start a career of coach</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.YearStartTrainer)
+</div>
+<div class="display-label"><b>Counts of students</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.CountsStudent)
+</div>
+<div class="display-label"><b>Sportsman status</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.JadgeCategory)
+</div>
+<div class="display-label"><b>Like Competetion</b></div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Rank)
+</div>
+
+
+<div class="display-label"><b>Karate students</b></div>
+<ul>
+    @foreach (KarateStudent c in Model.KarateStudents)
+    {
+        <li>@c.Name @c.LastName</li>
+    }
+</ul>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "ShowCoaches")
+</p>
+ 
+
+

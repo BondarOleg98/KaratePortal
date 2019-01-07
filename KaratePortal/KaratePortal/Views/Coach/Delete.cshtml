@@ -1,0 +1,119 @@
+﻿@model KaratePortal.Models.PersonKarate.Coach
+@using KaratePortal.Models.PersonKarate
+@{
+    ViewBag.Title = "Delete";
+}
+<br />
+<br />
+<br />
+<h2>Delete a karate student</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>Name</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            <b>Last name</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            <b>Age</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            <b>Country</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            <b>City</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            <b>Belt</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Belt)
+        </dd>
+
+        <dt>
+            <b>Start a career of coach</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearStartTrainer)
+        </dd>
+
+        <dt>
+            <b>Count of students</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountsStudent)
+        </dd>
+
+        <dt>
+            <b>Jadge category</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JadgeCategory)
+        </dd>
+
+        <dt>
+            <b>Rank</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rank)
+        </dd>
+
+        <dt>
+            <b>Karate students</b>
+        </dt>
+        <dd>
+
+            @foreach (KarateStudent ks in ViewBag.KarateStudents)
+            {
+                <p>@ks.Name @ks.LastName </p>
+            }
+
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to show coaches", "ShowCoaches")
+        </div>
+    }
+</div>

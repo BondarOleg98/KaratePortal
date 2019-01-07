@@ -1,0 +1,176 @@
+﻿@model KaratePortal.Models.PersonKarate.BranchChief
+@using KaratePortal.Models.PersonKarate
+@{
+    ViewBag.Title = "Add a coach";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<br />
+<br />
+<br />
+<h2>Add a coach</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Name</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Last name</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Age</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Country</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>City</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Belt</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Belt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Belt, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Start a career of coach</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.YearStartTrainer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.YearStartTrainer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Jadge category</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.JadgeCategory, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JadgeCategory, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Rank</b>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Rank, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Branch Chief </b>
+            <p>(Name branch and national role)</p>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NameBranch, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NameBranch, "", new { @class = "text-danger" })
+            <br />
+            @Html.EditorFor(model => model.NationalRole, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NationalRole, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <label class="radio-inline">
+                <input name="type" id="regularCoach" value="1" class="control  control-label col-md-2" checked="" type="radio">
+                Regular coach
+            </label>
+
+            <label class="radio-inline">
+                <input class="control" name="type" id="representative" value="0" type="radio">
+                Representative
+            </label>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#NameBranch").attr("disabled", "disabled");
+            $("#NationalRole").attr("disabled", "disabled");
+            $(".control").change(function () {
+                if ($(this).val() == "1") {
+                    $("#NameBranch").attr("disabled", "disabled").val('');
+                    $("#NationalRole").attr("disabled", "disabled").val('');
+                } else {
+                    $("#NameBranch").removeAttr("disabled");
+                    $("#NationalRole").removeAttr("disabled");
+                }
+            });
+
+        });
+    </script>
+ 
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            <b>Karate students</b>
+        </div>
+        <div class="col-md-10">
+            @foreach (KarateStudent st in ViewBag.KarateStudents)
+            {
+                <p><input type="checkbox" name="selectedStudents" value="@st.Id" />@st.Name @st.LastName</p>
+            }
+        </div>
+    </div>
+
+    <div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add a coach" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+}
+<div>
+    <div>
+        @Html.ActionLink("Back to List", "ShowCoaches", "Coach")
+    </div>
+</div>

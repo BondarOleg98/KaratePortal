@@ -1,0 +1,45 @@
+﻿@model IEnumerable<KaratePortal.Models.Map.Club>
+
+@{
+    ViewBag.Title = "ShowClubs";
+}
+
+<h2>ShowClubs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClubName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Federation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClubName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Federation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

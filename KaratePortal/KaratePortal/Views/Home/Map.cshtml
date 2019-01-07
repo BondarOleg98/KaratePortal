@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Map";
+}
+
+<script async defer src="" //must be Google API
+        type="text/javascript"></script>
+
+<style>
+    .stationInfo {
+        height: 150px;
+        width: 250px;
+    }
+    .center-div {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 3px;
+    }
+</style>
+
+<div id="canvas" style="height: 600px; width:1000px;"></div>
+<br />
+<br />
+    @section scripts {
+        <script type="text/javascript">
+
+    $(document).ready(function () {
+        GetMap();
+    });
+
+    function GetMap() {
+
+        google.maps.visualRefresh = true;
+        const Kyiv = new google.maps.LatLng(50.4501071, 30.5240501);
+        const mapOptions = {
+            zoom: 6,
+            center: Kyiv,
+            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+        };
+        const map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+        const myLatlng = new google.maps.LatLng(50.4501071, 30.5240501);
+
+        const marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map
+        });
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+
+        $.getJSON('@Url.Action("GetData","Home")', function (data) {
+            $.each(data, function (i, item) {
+                var marker = new google.maps.Marker({
+                    'position': new google.maps.LatLng(item.GeoLong, item.GeoLat),
+                    'map': map
+                });
+
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+            })
+        });
+    }
+        </script>
+    }
+

@@ -1,0 +1,157 @@
+﻿@model KaratePortal.Models.PersonKarate.BranchChief
+
+@using KaratePortal.Models.PersonKarate
+
+@{
+    ViewBag.Title = "Edit a coach";
+}
+<br />
+<br />
+<br />
+<h2>Edit a coach</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Name</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Last name</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Age</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Country</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>City</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Belt</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Belt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Belt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Start a career of coach</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.YearStartTrainer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.YearStartTrainer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Jadge category</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.JadgeCategory, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.JadgeCategory, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Rank</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rank, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rank, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Name branch</b>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameBranch, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameBranch, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+           <div class="control-label col-md-2">
+               <b>National role</b>
+           </div>
+           <div class="col-md-10">
+               @Html.EditorFor(model => model.NationalRole, new { htmlAttributes = new { @class = "form-control" } })
+               @Html.ValidationMessageFor(model => model.NationalRole, "", new { @class = "text-danger" })
+           </div>
+        </div>
+  
+         <div class="form-group">
+            <div class="control-label col-md-2">
+                <b>Karate students</b>
+            </div>
+         <div class="col-md-10">
+                @foreach (KarateStudent c in ViewBag.KarateStudents)
+                 {
+                    <p>
+                        <input type="checkbox" name="selectedStudents" value="@c.Id"
+                        @(Model.KarateStudents.Contains(c) ? "checked=\"checked\"" : "") />@c.Name  @c.LastName
+                    </p>
+                 }
+         </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Edit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to show coaches", "ShowCoaches")
+</div>
